@@ -1,6 +1,10 @@
 package gce.module02;
 
 import gce.module02.model.Item;
+import javafx.fxml.FXML;
+
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -8,6 +12,9 @@ import java.util.List;
 
 public class Controller {
     private List<Item> todoItems;
+
+    @FXML
+    private ListView<Item> todoListView;
 
     public void initialize() {
         // sample data to test the UI
@@ -23,5 +30,12 @@ public class Controller {
         todoItems.add(item3);
         todoItems.add(item4);
         todoItems.add(item5);
+
+        // Populate the list view with the sample data
+        todoListView.getItems().setAll(todoItems);
+
+        // Ensure that we can only select one item at a time
+        todoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
     }
 }
