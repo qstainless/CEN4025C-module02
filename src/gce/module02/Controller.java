@@ -5,8 +5,11 @@ import javafx.fxml.FXML;
 
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextArea;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +18,9 @@ public class Controller {
 
     @FXML
     private ListView<Item> todoListView;
+
+    @FXML
+    private TextArea itemDetailsTextArea;
 
     public void initialize() {
         // sample data to test the UI
@@ -37,5 +43,19 @@ public class Controller {
         // Ensure that we can only select one item at a time
         todoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
+    }
+
+    /**
+     * When an item on the ListView is selected, the item's due date and description
+     * are displayed in the TextArea
+     */
+    @FXML
+    public void handleClickListView() {
+        Item item = todoListView.getSelectionModel().getSelectedItem();
+
+        String itemDetails = "Due on: " + item.getItemDueDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG))
+                + "\n\n" + item.getItemDetails();
+
+        itemDetailsTextArea.setText(itemDetails);
     }
 }
