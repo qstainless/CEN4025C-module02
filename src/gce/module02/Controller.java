@@ -3,9 +3,10 @@ package gce.module02;
 import gce.module02.model.Item;
 import javafx.fxml.FXML;
 
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TextArea;
+import javafx.scene.text.Text;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -20,7 +21,10 @@ public class Controller {
     private ListView<Item> todoListView;
 
     @FXML
-    private TextArea itemDetailsTextArea;
+    private Text itemDetailsText;
+
+    @FXML
+    private Label dueDateLabel;
 
     public void initialize() {
         // sample data to test the UI
@@ -53,9 +57,8 @@ public class Controller {
     public void handleClickListView() {
         Item item = todoListView.getSelectionModel().getSelectedItem();
 
-        String itemDetails = "Due on: " + item.getItemDueDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG))
-                + "\n\n" + item.getItemDetails();
+        dueDateLabel.setText("Due on " + item.getItemDueDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
 
-        itemDetailsTextArea.setText(itemDetails);
+        itemDetailsText.setText(item.getItemDetails());
     }
 }
