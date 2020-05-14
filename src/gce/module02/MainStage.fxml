@@ -15,7 +15,7 @@
 
     <center>
         <VBox style="-fx-background-color: white">
-            <HBox style="-fx-border-color: white white black white; -fx-border-width: 1px; -fx-border-style: solid;">
+            <HBox style="-fx-border-color: white white #c5c5c5 white; -fx-border-width: 1px; -fx-border-style: solid;">
                 <Label fx:id="dueDateLabel">
                     <font>
                         <Font name="Arial italic" size="16"/>
@@ -28,7 +28,7 @@
                     <Insets bottom="5.0"/>
                 </padding>
             </HBox>
-            <HBox style="-fx-border-color: black white white white; -fx-border-width: 1px; -fx-border-style: solid;">
+            <HBox style="-fx-border-color: #888888 white white white; -fx-border-width: 1px; -fx-border-style: solid;">
                 <Text fx:id="itemDetailsText">
                     <font>
                         <Font name="Arial" size="16"/>
