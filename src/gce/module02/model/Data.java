@@ -43,10 +43,6 @@ public class Data {
         return items;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
-
     /**
      * Loads the to-do items from a text file
      */
