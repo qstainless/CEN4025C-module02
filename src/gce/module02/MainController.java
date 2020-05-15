@@ -30,8 +30,9 @@ public class MainController {
     private BorderPane mainBorderPane;
 
     public void initialize() {
-        // Listen to changes in the ListView to display the most recently changed item,
-        // whether it is selected by the user or when the user adds a new item to the to-do list
+        // Listen to changes in the ListView to display the most recently
+        // changed item, whether it is selected programmatically or by the
+        // user, or when the user adds a new item to the to-do list
         todoListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 Item item = todoListView.getSelectionModel().getSelectedItem();
