@@ -22,7 +22,11 @@ public class DialogController {
 
     public void processResults() {
         String itemDescription = itemDescriptionField.getText().trim();
-        String itemDetails = itemDetailsField.getText().trim();
+        // The user may enter tabs in the itemDetails, which will generate
+        // an error when loading the items from the text file. To prevent
+        // that, we replace all tab characters entered by the user with
+        // 4 spaces.
+        String itemDetails = itemDetailsField.getText().trim().replace("\t", "    ");
         LocalDate itemDueDate = itemDueDateField.getValue();
 
         Data.getInstance().addItem(new Item(itemDescription, itemDetails, itemDueDate));
