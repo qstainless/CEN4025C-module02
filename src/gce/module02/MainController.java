@@ -58,6 +58,9 @@ public class MainController {
         // Makes the dialog a child of the MainStage (mainBorderPane)
         dialog.initOwner(mainBorderPane.getScene().getWindow());
 
+        // Set the dialog title
+        dialog.setTitle("Add new to-do item");
+
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("MainDialog.fxml"));
 
