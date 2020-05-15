@@ -41,12 +41,24 @@ public class Controller {
         todoItems.add(item4);
         todoItems.add(item5);
 
+        // Listen to changes in the ListView to display the most recently changed item,
+        // whether it is selected by the user or when the user adds a new item to the to-do list
+        todoListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                Item item = todoListView.getSelectionModel().getSelectedItem();
+                dueDateLabel.setText("Due on " + item.getItemDueDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
+                itemDetailsText.setText(item.getItemDetails());
+            }
+        });
+
         // Populate the list view with the sample data
         todoListView.getItems().setAll(todoItems);
 
         // Ensure that we can only select one item at a time
         todoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
+        // Select the first to-do item in the list
+        todoListView.getSelectionModel().selectFirst();
     }
 
     /**
