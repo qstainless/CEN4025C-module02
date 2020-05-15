@@ -1,5 +1,6 @@
 package gce.module02;
 
+import gce.module02.model.Data;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,5 +19,23 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    @Override
+    public void init() {
+        try {
+            Data.getInstance().loadItems();
+        } catch (Exception e) {
+            System.out.println("Error loading to-do items from file. " + e);
+        }
+    }
+
+    @Override
+    public void stop() {
+        try {
+            Data.getInstance().saveItems();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
