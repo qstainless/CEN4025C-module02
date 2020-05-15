@@ -27,20 +27,6 @@ public class Controller {
     private Label dueDateLabel;
 
     public void initialize() {
-        // sample data to test the UI
-        Item item1 = new Item("Description 1", "Details 1", LocalDate.now());
-        Item item2 = new Item("Description 2", "Details 2", LocalDate.now());
-        Item item3 = new Item("Description 3", "Details 3", LocalDate.now());
-        Item item4 = new Item("Description 4", "Details 4", LocalDate.now());
-        Item item5 = new Item("Description 5", "Details 5", LocalDate.now());
-
-        todoItems = new ArrayList<Item>();
-        todoItems.add(item1);
-        todoItems.add(item2);
-        todoItems.add(item3);
-        todoItems.add(item4);
-        todoItems.add(item5);
-
         // Listen to changes in the ListView to display the most recently changed item,
         // whether it is selected by the user or when the user adds a new item to the to-do list
         todoListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -51,8 +37,8 @@ public class Controller {
             }
         });
 
-        // Populate the list view with the sample data
-        todoListView.getItems().setAll(todoItems);
+        // Populate the list view with the to-do items loaded from the text file
+        todoListView.getItems().setAll(Data.getInstance().getItems());
 
         // Ensure that we can only select one item at a time
         todoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
