@@ -81,10 +81,13 @@ public class MainController {
             DialogController dialogController = fxmlLoader.getController();
 
             // Add the data entered into the dialog to the Data model
-            dialogController.processResults();
+            Item newItem = dialogController.processResults();
 
-            // Get the recently added item from the Data model to display in the ListView
+            // Gets items from the Data model to display in the ListView
             todoListView.getItems().setAll(Data.getInstance().getItems());
+
+            // Select the newly added to-do item in the Data model
+            todoListView.getSelectionModel().select(newItem);
         } else {
             System.out.println("Cancel pressed");
         }

@@ -20,7 +20,7 @@ public class DialogController {
     @FXML
     private DatePicker itemDueDateField;
 
-    public void processResults() {
+    public Item processResults() {
         String itemDescription = itemDescriptionField.getText().trim();
         // The user may enter tabs in the itemDetails, which will generate
         // an error when loading the items from the text file. To prevent
@@ -29,6 +29,14 @@ public class DialogController {
         String itemDetails = itemDetailsField.getText().trim().replace("\t", "    ");
         LocalDate itemDueDate = itemDueDateField.getValue();
 
-        Data.getInstance().addItem(new Item(itemDescription, itemDetails, itemDueDate));
+        // We want to automatically select the newly added to-do item in
+        // the ListView. To do that, we first add the item to the Data
+        // model and then return it to the MainController
+        Item newItem = new Item(itemDescription, itemDetails, itemDueDate);
+
+        // Add the new item to the Data model
+        Data.getInstance().addItem(newItem);
+
+        return newItem;
     }
 }
