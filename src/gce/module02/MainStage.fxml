@@ -39,14 +39,16 @@
                 </padding>
             </HBox>
             <HBox style="-fx-border-color: #888888 white white white; -fx-border-width: 1px; -fx-border-style: solid;">
-                <Text fx:id="itemDetailsText">
-                    <font>
-                        <Font name="Arial" size="16"/>
-                    </font>
-                    <HBox.margin>
-                        <Insets left="10.0" top="5.0"/>
-                    </HBox.margin>
-                </Text>
+                <ScrollPane HBox.hgrow="ALWAYS">
+                    <Text fx:id="itemDetailsText" wrappingWidth="420">
+                        <font>
+                            <Font name="Arial" size="16"/>
+                        </font>
+                    </Text>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" top="10.0"/>
+                    </padding>
+                </ScrollPane>
             </HBox>
         </VBox>
     </center>
