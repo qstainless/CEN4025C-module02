@@ -66,7 +66,7 @@ public class Data {
                 items.add(item);
             }
         } catch (IOException e) {
-            System.out.println("Error reading to-do list items to file.");
+            System.out.println("Error reading to-do list items from file.");
         }
     }
 
