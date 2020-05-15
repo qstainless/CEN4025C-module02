@@ -11,12 +11,9 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.List;
 import java.util.Optional;
 
 public class MainController {
-    private List<Item> todoItems;
-
     @FXML
     private ListView<Item> todoListView;
 
