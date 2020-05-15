@@ -32,7 +32,7 @@ public class Data {
      * Class constructor
      */
     private Data() {
-        formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG);
+        formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     }
 
     // Getters and setter
@@ -63,7 +63,7 @@ public class Data {
                 String[] loadedItems = input.split("\t");
                 String itemDescription = loadedItems[0];
                 String itemDetails = loadedItems[1];
-                String itemDueDate = loadedItems[3];
+                String itemDueDate = loadedItems[2];
 
                 LocalDate formattedItemDueDate = LocalDate.parse(itemDueDate, formatter);
                 Item item = new Item(itemDescription, itemDetails, formattedItemDueDate);
