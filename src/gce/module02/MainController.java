@@ -41,8 +41,8 @@ public class MainController {
             }
         });
 
-        // Populate the list view with the to-do items loaded from the text file
-        todoListView.getItems().setAll(Data.getInstance().getItems());
+        // Populate the list view with the to-do items in the Data model
+        todoListView.setItems(Data.getInstance().getItems());
 
         // Ensure that we can only select one item at a time
         todoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -86,13 +86,8 @@ public class MainController {
             // Add the data entered into the dialog to the Data model
             Item newItem = dialogController.processResults();
 
-            // Gets items from the Data model to display in the ListView
-            todoListView.getItems().setAll(Data.getInstance().getItems());
-
             // Select the newly added to-do item in the Data model
             todoListView.getSelectionModel().select(newItem);
-        } else {
-            System.out.println("Cancel pressed");
         }
     }
 

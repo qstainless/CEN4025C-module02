@@ -1,6 +1,7 @@
 package gce.module02.model;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,7 +11,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 /**
  * Singleton class to load and save the to-do items to a text file.
@@ -25,7 +25,7 @@ public class Data {
 
     private final DateTimeFormatter formatter;
 
-    private List<Item> items;
+    private ObservableList<Item> items;
 
     /**
      * Class constructor
@@ -41,7 +41,7 @@ public class Data {
         return instance;
     }
 
-    public List<Item> getItems() {
+    public ObservableList<Item> getItems() {
         return items;
     }
 
