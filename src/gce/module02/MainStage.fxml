@@ -10,7 +10,7 @@
     <top>
         <MenuBar>
             <Menu text="To-do">
-                <MenuItem text="Add to-do item"/>
+                <MenuItem text="Add to-do item" onAction="#newItemDialog"/>
                 <MenuItem text="Delete to-do item"/>
                 <SeparatorMenuItem/>
                 <MenuItem text="Close"/>
