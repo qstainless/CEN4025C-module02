@@ -4,7 +4,6 @@ import gce.module02.model.Data;
 import gce.module02.model.Item;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
@@ -13,6 +12,7 @@ import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.List;
+import java.util.Optional;
 
 public class MainController {
     private List<Item> todoItems;
