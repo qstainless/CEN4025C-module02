@@ -87,6 +87,7 @@ public class Data {
                         item.getItemDescription(),
                         item.getItemDetails(),
                         item.getItemDueDate().format(formatter)));
+                bufferedWriter.newLine();
             }
         } catch (IOException e) {
             System.out.println("Error writing to-do list items to file.");
