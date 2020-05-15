@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.List;
 
-public class Controller {
+public class MainController {
     private List<Item> todoItems;
 
     @FXML
