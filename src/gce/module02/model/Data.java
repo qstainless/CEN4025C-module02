@@ -31,10 +31,12 @@ public class Data {
      * Class constructor
      */
     private Data() {
+        // Consistent format for saving and loading the to-do item's DueDate
+        // even though it will be displayed in a different format on the GUI
         formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     }
 
-    // Getters and setter
+    // Getter and setter
     public static Data getInstance() {
         return instance;
     }
@@ -43,12 +45,18 @@ public class Data {
         return items;
     }
 
+    // Add a new to-do item to the Data model
     public void addItem(Item item) {
         items.add(item);
     }
 
     /**
-     * Loads the to-do items from a text file
+     * Loads the to-do items from a text file. If the text files does not
+     * already exist in the filesystem, the to-do list will be empty. Once
+     * to-do items are added to the Data model, they will be saved to the
+     * predefined text file when the user exits the application, either by
+     * using the Close option in the To-Do menu or by using the window's
+     * close button.
      */
     public void loadItems() {
         // Must use an observableArrayList to populate the GUI ListView
@@ -60,11 +68,13 @@ public class Data {
             String input;
             while ((input = bufferedReader.readLine()) != null) {
                 String[] loadedItems = input.split("\t");
+
                 String itemDescription = loadedItems[0];
                 String itemDetails = loadedItems[1];
                 String itemDueDate = loadedItems[2];
 
                 LocalDate formattedItemDueDate = LocalDate.parse(itemDueDate, formatter);
+
                 Item item = new Item(itemDescription, itemDetails, formattedItemDueDate);
 
                 items.add(item);
