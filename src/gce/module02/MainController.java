@@ -3,11 +3,13 @@ package gce.module02;
 import gce.module02.model.Data;
 import gce.module02.model.Item;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.List;
@@ -23,6 +25,9 @@ public class MainController {
 
     @FXML
     private Label dueDateLabel;
+
+    @FXML
+    private BorderPane mainBorderPane;
 
     public void initialize() {
         // Listen to changes in the ListView to display the most recently changed item,
@@ -43,6 +48,20 @@ public class MainController {
 
         // Select the first to-do item in the list
         todoListView.getSelectionModel().selectFirst();
+    }
+
+    @FXML
+    public void newItemDialog() {
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.initOwner(mainBorderPane.getScene().getWindow());
+
+        try {
+            Parent dialogRoot = FXMLLoader.load(getClass().getResource("MainDialog.fxml"));
+            dialog.getDialogPane().setContent(dialogRoot);
+        } catch (IOException e) {
+            System.out.println("Error loading add item dialog.");
+            e.printStackTrace();
+        }
     }
 
     /**

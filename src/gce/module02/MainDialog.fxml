@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<DialogPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="gce.module02.DialogController">
+    <content>
+        <GridPane vgap="10" hgap="10">
+            <Label text="Title" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <Label text="Details" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextArea GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <Label text="Due date" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <DatePicker GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        </GridPane>
+    </content>
+</DialogPane>
