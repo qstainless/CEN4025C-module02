@@ -54,6 +54,8 @@ public class MainController {
     @FXML
     public void newItemDialog() {
         Dialog<ButtonType> dialog = new Dialog<>();
+
+        // Makes the dialog a child of the MainStage (mainBorderPane)
         dialog.initOwner(mainBorderPane.getScene().getWindow());
 
         FXMLLoader fxmlLoader = new FXMLLoader();
