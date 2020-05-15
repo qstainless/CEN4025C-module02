@@ -43,6 +43,10 @@ public class Data {
         return items;
     }
 
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
     /**
      * Loads the to-do items from a text file
      */
