@@ -56,12 +56,35 @@ public class MainController {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(mainBorderPane.getScene().getWindow());
 
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("MainDialog.fxml"));
+
         try {
-            Parent dialogRoot = FXMLLoader.load(getClass().getResource("MainDialog.fxml"));
-            dialog.getDialogPane().setContent(dialogRoot);
+            // Open the dialog to add a new to-do item
+            dialog.getDialogPane().setContent(fxmlLoader.load());
         } catch (IOException e) {
             System.out.println("Error loading add item dialog.");
             e.printStackTrace();
+        }
+
+        // Add OK and CANCEL buttons to the DialogPane
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+
+        // Focus on the new item dialog and ignore other windows of the application
+        Optional<ButtonType> result = dialog.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // Get the dialog controller so we can access it directly
+            DialogController dialogController = fxmlLoader.getController();
+
+            // Add the data entered into the dialog to the Data model
+            dialogController.processResults();
+
+            // Get the recently added item from the Data model to display in the ListView
+            todoListView.getItems().setAll(Data.getInstance().getItems());
+        } else {
+            System.out.println("Cancel pressed");
         }
     }
 
