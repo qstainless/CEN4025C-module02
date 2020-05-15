@@ -2,16 +2,21 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<DialogPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="gce.module02.DialogController">
+
+<DialogPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="gce.module02.DialogController">
     <content>
-        <GridPane vgap="10" hgap="10">
-            <Label text="Title" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-            <TextField GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-            <Label text="Details" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-            <TextArea GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-            <Label text="Due date" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-            <DatePicker GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        <GridPane hgap="10" prefHeight="250" vgap="10">
+            <Label text="Title" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <Label text="Details" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextArea prefHeight="80.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <Label text="Due date" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <columnConstraints>
+                <ColumnConstraints prefWidth="100.0"/>
+                <ColumnConstraints prefWidth="300.0"/>
+            </columnConstraints>
         </GridPane>
     </content>
 </DialogPane>
