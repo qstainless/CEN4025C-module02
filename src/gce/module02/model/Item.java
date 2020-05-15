@@ -7,12 +7,20 @@ public class Item {
     private String itemDetails;
     private LocalDate itemDueDate;
 
+    /**
+     * Model constructor
+     *
+     * @param itemDescription The to-do item description
+     * @param itemDetails     The to-do item details
+     * @param itemDueDate     The to-do item due date
+     */
     public Item(String itemDescription, String itemDetails, LocalDate itemDueDate) {
         this.itemDescription = itemDescription;
         this.itemDetails = itemDetails;
         this.itemDueDate = itemDueDate;
     }
 
+    // Setters and getters
     public String getItemDescription() {
         return itemDescription;
     }
