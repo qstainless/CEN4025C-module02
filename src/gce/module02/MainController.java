@@ -105,7 +105,8 @@ public class MainController {
                     }
                 };
 
-                // We only want a context menu in non-empty cells
+                // Add the listener for the context menu.
+                // We only want a context menu in non-empty cells.
                 cell.emptyProperty().addListener(
                         (obs, wasEmpty, isNowEmpty) -> {
                             if (isNowEmpty) {
