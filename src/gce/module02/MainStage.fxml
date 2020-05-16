@@ -14,10 +14,13 @@
                 <SeparatorMenuItem/>
                 <MenuItem text="Close"/>
             </Menu>
+            <Menu text="Edit">
+                <MenuItem text="Delete selected item" onAction="#handleMenuDelete"/>
+            </Menu>
         </MenuBar>
     </top>
     <left>
-        <ListView fx:id="todoListView">
+        <ListView fx:id="todoListView" onKeyPressed="#handleKeyDelete">
 
         </ListView>
     </left>
