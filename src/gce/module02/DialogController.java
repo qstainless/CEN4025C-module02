@@ -30,6 +30,14 @@ public class DialogController {
         String itemDetails = itemDetailsField.getText().trim().replace("\t", "    ");
         LocalDate itemDueDate = itemDueDateField.getValue();
 
+        /*
+         If no dueDate is selected in the DatePicker, the default dueDate
+         is tomorrow
+        */
+        if (itemDueDate == null) {
+            itemDueDate = LocalDate.now().plusDays(1);
+        }
+
         // We want to automatically select the newly added to-do item in
         // the ListView. To do that, we first add the item to the Data
         // model and then return it to the MainController
