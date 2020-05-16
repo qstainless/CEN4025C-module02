@@ -3,7 +3,6 @@ package gce.module02.model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -22,6 +21,7 @@ public class Data {
 
     private static final Data instance = new Data();
     private static final String filename = "CastanedaTodoList.txt";
+    private static final Path path = Paths.get(filename);
 
     private final DateTimeFormatter formatter;
 
@@ -62,44 +62,67 @@ public class Data {
         // Must use an observableArrayList to populate the GUI ListView
         items = FXCollections.observableArrayList();
 
-        Path path = Paths.get(filename);
+        String itemData = readItemsFromFile();
 
-        try (BufferedReader bufferedReader = Files.newBufferedReader(path)) {
-            String input;
-            while ((input = bufferedReader.readLine()) != null) {
-                String[] loadedItems = input.split("\t");
+        String[] allItems = itemData.split("\\.\\.::--=--::\\.\\.");
 
-                String itemDescription = loadedItems[0];
-                String itemDetails = loadedItems[1];
-                String itemDueDate = loadedItems[2];
+        for (String individualItem : allItems) {
+            String[] loadedItems = individualItem.split("\t");
 
-                LocalDate formattedItemDueDate = LocalDate.parse(itemDueDate, formatter);
+            String itemDescription = loadedItems[0];
+            String itemDetails = loadedItems[1];
+            String itemDueDate = loadedItems[2];
 
-                Item item = new Item(itemDescription, itemDetails, formattedItemDueDate);
+            LocalDate formattedItemDueDate = LocalDate.parse(itemDueDate, formatter);
 
-                items.add(item);
-            }
-        } catch (IOException e) {
-            System.out.println("Error reading to-do list items from file.");
+            Item item = new Item(itemDescription, itemDetails, formattedItemDueDate);
+
+            items.add(item);
         }
     }
 
     /**
-     * Saves to-do items to a text file.
+     * Saves to-do items to a text file when the application is closed.
+     * Uses a specific "end-of-item" string to allow for multi-line
+     * itemDetails.
      */
     public void saveItems() {
-        Path path = Paths.get(filename);
-
         try (BufferedWriter bufferedWriter = Files.newBufferedWriter(path)) {
             for (Item item : items) {
                 bufferedWriter.write(String.format("%s\t%s\t%s",
                         item.getItemDescription(),
                         item.getItemDetails(),
                         item.getItemDueDate().format(formatter)));
-                bufferedWriter.newLine();
+                bufferedWriter.write("..::--=--::..");
             }
         } catch (IOException e) {
             System.out.println("Error writing to-do list items to file.");
         }
+    }
+
+    /**
+     * Deletes an item from the Data model
+     *
+     * @param item The item to delete
+     */
+    public void deleteItem(Item item) {
+        items.remove(item);
+    }
+
+    /**
+     * Reads all to-do items from the text file.
+     *
+     * @return The string containing all to-do items
+     */
+    public static String readItemsFromFile() {
+        String itemData = "";
+
+        try {
+            itemData = new String(Files.readAllBytes(path));
+        } catch (IOException ioException) {
+            System.out.println("Error loading the to-do list items from file.");
+        }
+
+        return itemData;
     }
 }
