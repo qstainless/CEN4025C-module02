@@ -138,4 +138,15 @@ public class MainController {
             Data.getInstance().deleteItem(item);
         }
     }
+
+    /**
+     * Called by the Exit menu item. As opposed to closing the stage, which
+     * automatically calls the javafx stop() method, this method will first
+     * call the Data singleton to save all to-do items before closing the
+     * application.
+     */
+    public void programExit() {
+        Data.getInstance().saveItems();
+        System.exit(0);
+    }
 }
