@@ -1,4 +1,4 @@
-package gce.module02;
+package gce.module02.controller;
 
 import gce.module02.model.Data;
 import gce.module02.model.Item;
@@ -64,7 +64,7 @@ public class MainController {
         dialog.setTitle("Add new to-do item");
 
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("MainDialog.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("../view/MainDialog.fxml"));
 
         try {
             // Open the dialog to add a new to-do item

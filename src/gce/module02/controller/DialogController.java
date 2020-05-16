@@ -1,4 +1,4 @@
-package gce.module02;
+package gce.module02.controller;
 
 import gce.module02.model.Data;
 import gce.module02.model.Item;

@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <DialogPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="gce.module02.DialogController">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="gce.module02.controller.DialogController">
     <content>
         <GridPane hgap="10" vgap="10" prefHeight="250">
             <Label text="Title" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
