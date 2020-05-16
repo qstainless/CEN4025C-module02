@@ -109,6 +109,14 @@ public class MainController {
                 dueDateLabel.setText("Due on " + dueDate);
 
                 itemDetailsText.setText(item.getItemDetails());
+            } else {
+                /*
+                 Remove ghost iteDueDate and itemDetails when the last item
+                 is deleted
+                */
+                dueDateLabel.setText(null);
+
+                itemDetailsText.setText(null);
             }
         });
 
