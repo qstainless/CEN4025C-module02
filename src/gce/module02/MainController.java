@@ -156,14 +156,14 @@ public class MainController {
     public void createDeleteContextMenu() {
         listContextMenu = new ContextMenu();
 
-        MenuItem deleteItem = new MenuItem("Delete this item");
+        MenuItem itemToDelete = new MenuItem("Delete this item");
 
-        deleteItem.setOnAction(event -> {
+        itemToDelete.setOnAction(event -> {
             Item item = todoListView.getSelectionModel().getSelectedItem();
             deleteItem(item);
         });
 
-        listContextMenu.getItems().addAll(deleteItem);
+        listContextMenu.getItems().addAll(itemToDelete);
     }
 
     /**
