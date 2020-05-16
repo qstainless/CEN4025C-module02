@@ -136,7 +136,7 @@ public class MainController {
     public void handleMenuDelete() {
         Item selectedItem = todoListView.getSelectionModel().getSelectedItem();
 
-        // Do not delete The selWe only want to allow the deletion of existing items
+        // We only want to allow the deletion of existing items
         if (selectedItem != null) {
             deleteItem(selectedItem);
         }
