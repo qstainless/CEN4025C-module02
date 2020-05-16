@@ -43,14 +43,6 @@ public class MainController {
     private Label dueDateLabel;
 
     /**
-     *
-     */
-    public void initialize() {
-        // Populate the ListView with the to-do items in the Data model
-        populateListView();
-    }
-
-    /**
      * Presents the dialig to add a to-do item.
      */
     @FXML
@@ -94,6 +86,39 @@ public class MainController {
     }
 
     /**
+     * Allow the user to delete an item via the To-do menu.
+     */
+    @FXML
+    public void handleMenuDelete() {
+        Item selectedItem = todoListView.getSelectionModel().getSelectedItem();
+
+        // We only want to allow the deletion of existing items
+        if (selectedItem != null) {
+            deleteItem(selectedItem);
+        }
+    }
+
+    /**
+     * Called by the Exit menu item. As opposed to closing the stage, which
+     * automatically calls the javafx stop() method, this method will first
+     * call the Data singleton to save all to-do items before closing the
+     * application.
+     */
+    @FXML
+    public void programExit() {
+        Data.getInstance().saveItems();
+        System.exit(0);
+    }
+
+    /**
+     *
+     */
+    public void initialize() {
+        // Populate the ListView with the to-do items in the Data model
+        populateListView();
+    }
+
+    /**
      * Populates the ListView of the main stage. Listens to changes in the
      * ListView to display the most recently changed item, whether it is
      * selected programmatically or by the user, or when the user adds a new
@@ -131,18 +156,6 @@ public class MainController {
     }
 
     /**
-     * Allow the user to delete an item via the To-do menu.
-     */
-    public void handleMenuDelete() {
-        Item selectedItem = todoListView.getSelectionModel().getSelectedItem();
-
-        // We only want to allow the deletion of existing items
-        if (selectedItem != null) {
-            deleteItem(selectedItem);
-        }
-    }
-
-    /**
      * Deletes the selected to-do item. Will show an alert and ask for
      * confirmation before deleting the item, as the program does not
      * offer an "undo" function.
@@ -164,16 +177,5 @@ public class MainController {
         if (result.isPresent() && (result.get() == ButtonType.OK)) {
             Data.getInstance().deleteItem(item);
         }
-    }
-
-    /**
-     * Called by the Exit menu item. As opposed to closing the stage, which
-     * automatically calls the javafx stop() method, this method will first
-     * call the Data singleton to save all to-do items before closing the
-     * application.
-     */
-    public void programExit() {
-        Data.getInstance().saveItems();
-        System.exit(0);
     }
 }
