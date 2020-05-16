@@ -34,7 +34,7 @@ public class DialogController {
 
         /*
          If no dueDate is selected in the DatePicker, the default dueDate
-         is tomorrow
+         is set to tomorrow
         */
         if (itemDueDate == null) {
             itemDueDate = LocalDate.now().plusDays(1);
