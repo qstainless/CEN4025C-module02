@@ -45,8 +45,10 @@ public class Item {
         this.itemDueDate = itemDueDate;
     }
 
-    // By default, displaying an item's short description displays the object reference
-    // We want to display the actual description in the ListView
+    /*
+     By default, displaying an item's description displays the object
+     reference. We want to display the actual description in the ListView
+    */
     @Override
     public String toString() {
         return itemDescription;
