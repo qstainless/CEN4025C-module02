@@ -5,9 +5,10 @@ import gce.module02.model.Item;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
-import javafx.util.Callback;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
@@ -31,14 +32,8 @@ public class MainController {
     private ContextMenu listContextMenu;
 
     public void initialize() {
-        // Create a context menu to allow deletion of individual to-do items
-        createDeleteContextMenu();
-
         // Populate the ListView with the to-do items in the Data model
         populateListView();
-
-        // Initialize cell factory for context menu functionality in the ListView
-        initializeCellFactory();
     }
 
     @FXML
@@ -82,55 +77,10 @@ public class MainController {
     }
 
     /**
-     * Initializes the ListView's cell factory method
-     */
-    public void initializeCellFactory() {
-        /*
-         We pass an anonymous class to implement the callback interface,
-         which is part of the JavaFX API, and we pass the ListView
-         controller and the return type (the ListCell<>)
-        */
-        todoListView.setCellFactory(new Callback<ListView<Item>, ListCell<Item>>() {
-
-            @Override
-            public ListCell<Item> call(ListView<Item> param) {
-                ListCell<Item> cell = new ListCell<Item>() {
-
-                    @Override
-                    protected void updateItem(Item item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setText(null);
-                        } else {
-                            setText(item.getItemDescription());
-                        }
-                    }
-                };
-
-                /*
-                 Add the listener for the context menu.
-                 We only want a context menu in non-empty cells.
-                */
-                cell.emptyProperty().addListener(
-                        (obs, wasEmpty, isNowEmpty) -> {
-                            if (isNowEmpty) {
-                                cell.setContextMenu(null);
-                            } else {
-                                cell.setContextMenu(listContextMenu);
-                            }
-                        }
-                );
-
-                return cell;
-            }
-        });
-    }
-
-    /**
-     * Populates the ListView of the main stage.
-     * Listens to changes in the ListView to display the most recently
-     * changed item, whether it is selected programmatically or by the
-     * user, or when the user adds a new item to the to-do list.
+     * Populates the ListView of the main stage. Listens to changes in the
+     * ListView to display the most recently changed item, whether it is
+     * selected programmatically or by the user, or when the user adds a new
+     * item to the to-do list.
      */
     public void populateListView() {
         todoListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -156,19 +106,32 @@ public class MainController {
     }
 
     /**
-     * Creates the context menu to delete individual to-do items
+     * Allow the user to delete an item by pressing the Delete or Backspace
+     * keys if they do not want to use the context menu.
+     *
+     * @param keyEvent The key pressed on the selected item
      */
-    public void createDeleteContextMenu() {
-        listContextMenu = new ContextMenu();
+    public void handleKeyDelete(KeyEvent keyEvent) {
+        Item selectedItem = todoListView.getSelectionModel().getSelectedItem();
 
-        MenuItem itemToDelete = new MenuItem("Delete this item");
+        // We only want to allow the deletion of existing items
+        if (selectedItem != null) {
+            if (keyEvent.getCode().equals(KeyCode.DELETE) || keyEvent.getCode().equals(KeyCode.BACK_SPACE)) {
+                deleteItem(selectedItem);
+            }
+        }
+    }
 
-        itemToDelete.setOnAction(event -> {
-            Item item = todoListView.getSelectionModel().getSelectedItem();
-            deleteItem(item);
-        });
+    /**
+     * Allow the user to delete an item via the To-do menu.
+     */
+    public void handleMenuDelete() {
+        Item selectedItem = todoListView.getSelectionModel().getSelectedItem();
 
-        listContextMenu.getItems().addAll(itemToDelete);
+        // Do not delete The selWe only want to allow the deletion of existing items
+        if (selectedItem != null) {
+            deleteItem(selectedItem);
+        }
     }
 
     /**
