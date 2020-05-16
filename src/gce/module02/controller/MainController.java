@@ -111,7 +111,7 @@ public class MainController {
                 itemDetailsText.setText(item.getItemDetails());
             } else {
                 /*
-                 Remove ghost iteDueDate and itemDetails when the last item
+                 Remove ghost itemDueDate and itemDetails when the last item
                  is deleted
                 */
                 dueDateLabel.setText(null);
