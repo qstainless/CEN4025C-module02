@@ -13,27 +13,46 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Optional;
 
+/**
+ * This is the main controller for the application's GUI
+ */
 public class MainController {
-    @FXML
-    private ListView<Item> todoListView;
 
-    @FXML
-    private Text itemDetailsText;
-
-    @FXML
-    private Label dueDateLabel;
-
+    /**
+     * The main stage container
+     */
     @FXML
     private BorderPane mainBorderPane;
 
+    /**
+     * The to-do item ListView
+     */
     @FXML
-    private ContextMenu listContextMenu;
+    private ListView<Item> todoListView;
 
+    /**
+     * The to-do items' details are contained in a Text type variable
+     */
+    @FXML
+    private Text itemDetailsText;
+
+    /**
+     * The to-do item's due date label
+     */
+    @FXML
+    private Label dueDateLabel;
+
+    /**
+     *
+     */
     public void initialize() {
         // Populate the ListView with the to-do items in the Data model
         populateListView();
     }
 
+    /**
+     * Presents the dialig to add a to-do item.
+     */
     @FXML
     public void newItemDialog() {
         Dialog<ButtonType> dialog = new Dialog<>();
