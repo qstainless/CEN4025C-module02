@@ -67,7 +67,7 @@ public class Data {
 
         String itemData = readItemsFromFile();
 
-        String[] allItems = itemData.split("\\.\\.::--=--::\\.\\.");
+        String[] allItems = itemData.split("_\\.:–=–=–:\\._");
 
         for (String individualItem : allItems) {
             String[] loadedItems = individualItem.split("\t");
@@ -96,7 +96,7 @@ public class Data {
                         item.getItemDescription(),
                         item.getItemDetails(),
                         item.getItemDueDate().format(formatter)));
-                bufferedWriter.write("..::--=--::..");
+                bufferedWriter.write("_.:–=–=–:._");
             }
         } catch (IOException e) {
             System.out.println("Error writing to-do list items to file.");
