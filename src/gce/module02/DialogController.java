@@ -32,6 +32,15 @@ public class DialogController {
         String itemDetails = itemDetailsField.getText().trim().replace("\t", "    ");
         LocalDate itemDueDate = itemDueDateField.getValue();
 
+        // Sets the default values for empty fields
+        if (itemDescription.isEmpty()) {
+            itemDescription = "[no description provided]";
+        }
+
+        if (itemDetails.isEmpty()) {
+            itemDetails = "[no details provided]";
+        }
+
         /*
          If no dueDate is selected in the DatePicker, the default dueDate
          is set to tomorrow
