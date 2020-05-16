@@ -20,11 +20,14 @@ import java.time.format.DateTimeFormatter;
 public class Data {
 
     private static final Data instance = new Data();
-    private static final String filename = "CastanedaTodoList.txt";
-    private static final Path path = Paths.get(filename);
 
+    // Path to the text file that stores the to-do items
+    private static final Path path = Paths.get("CastanedaTodoList.txt");
+
+    // Used to format the itemDueDate before saving
     private final DateTimeFormatter formatter;
 
+    // Where the to-do items will be stored in memory
     private ObservableList<Item> items;
 
     /**
@@ -36,7 +39,7 @@ public class Data {
         formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     }
 
-    // Getter and setter
+    // Getters
     public static Data getInstance() {
         return instance;
     }
@@ -120,7 +123,7 @@ public class Data {
         try {
             itemData = new String(Files.readAllBytes(path));
         } catch (IOException ioException) {
-            System.out.println("Error loading the to-do list items from file.");
+            System.out.println("To-do Item text file does not exist. A new file will be created.");
         }
 
         return itemData;

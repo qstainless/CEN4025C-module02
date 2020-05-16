@@ -26,7 +26,7 @@ public class Main extends Application {
         try {
             Data.getInstance().loadItems();
         } catch (Exception e) {
-            System.out.println("Error loading to-do items from file. " + e);
+            System.out.println("");
         }
     }
 
