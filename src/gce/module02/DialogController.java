@@ -22,11 +22,13 @@ public class DialogController {
 
     public Item processResults() {
         String itemDescription = itemDescriptionField.getText().trim();
-        // The user may enter tabs in the itemDetails, which will generate
-        // an error when loading the items from the text file, because the
-        // application uses the tab character as a delimiter. To avoit the
-        // error, we replace all tab characters entered by the user with
-        // 4 spaces.
+        /*
+         The user may enter tabs in the itemDetails, which will generate
+         an error when loading the items from the text file, because the
+         application uses the tab character as a delimiter. To avoit the
+         error, we replace all tab characters entered by the user with
+         4 spaces.
+        */
         String itemDetails = itemDetailsField.getText().trim().replace("\t", "    ");
         LocalDate itemDueDate = itemDueDateField.getValue();
 
@@ -38,9 +40,11 @@ public class DialogController {
             itemDueDate = LocalDate.now().plusDays(1);
         }
 
-        // We want to automatically select the newly added to-do item in
-        // the ListView. To do that, we first add the item to the Data
-        // model and then return it to the MainController
+        /*
+         We want to automatically select the newly added to-do item in
+         the ListView. To do that, we first add the item to the Data
+         model and then return it to the MainController
+        */
         Item newItem = new Item(itemDescription, itemDetails, itemDueDate);
 
         // Add the new item to the Data model

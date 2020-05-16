@@ -34,8 +34,10 @@ public class Data {
      * Class constructor
      */
     private Data() {
-        // Consistent format for saving and loading the to-do item's DueDate
-        // even though it will be displayed in a different format on the GUI
+        /*
+         Consistent format for saving and loading the to-do item's DueDate
+         even though it will be displayed in a different format on the GUI
+        */
         formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     }
 

@@ -85,9 +85,11 @@ public class MainController {
      * Initializes the ListView's cell factory method
      */
     public void initializeCellFactory() {
-        // We pass an anonymous class to implement the callback interface,
-        // which is part of the JavaFX API, and we pass the ListView
-        // controller and the return type (the ListCell<>)
+        /*
+         We pass an anonymous class to implement the callback interface,
+         which is part of the JavaFX API, and we pass the ListView
+         controller and the return type (the ListCell<>)
+        */
         todoListView.setCellFactory(new Callback<ListView<Item>, ListCell<Item>>() {
 
             @Override
@@ -105,8 +107,10 @@ public class MainController {
                     }
                 };
 
-                // Add the listener for the context menu.
-                // We only want a context menu in non-empty cells.
+                /*
+                 Add the listener for the context menu.
+                 We only want a context menu in non-empty cells.
+                */
                 cell.emptyProperty().addListener(
                         (obs, wasEmpty, isNowEmpty) -> {
                             if (isNowEmpty) {
