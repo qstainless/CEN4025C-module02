@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.input.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -9,20 +10,29 @@
             fx:controller="gce.module02.MainController">
     <top>
         <MenuBar>
-            <Menu text="To-do">
-                <MenuItem text="Add to-do item" onAction="#newItemDialog"/>
-                <SeparatorMenuItem/>
-                <MenuItem text="Close"/>
+            <Menu text="File">
+                <MenuItem text="Exit" onAction="#programExit">
+                    <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="Q" control="UP" meta="UP" shift="UP" shortcut="UP"/>
+                    </accelerator>
+                </MenuItem>
             </Menu>
             <Menu text="Edit">
-                <MenuItem text="Delete selected item" onAction="#handleMenuDelete"/>
+                <MenuItem text="Add new item" onAction="#newItemDialog">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
+                    </accelerator>
+                </MenuItem>
+                <MenuItem text="Delete selected item" onAction="#handleMenuDelete">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="DELETE" control="UP" meta="UP" shift="UP" shortcut="UP"/>
+                    </accelerator>
+                </MenuItem>
             </Menu>
         </MenuBar>
     </top>
     <left>
-        <ListView fx:id="todoListView" onKeyPressed="#handleKeyDelete">
-
-        </ListView>
+        <ListView fx:id="todoListView"/>
     </left>
 
     <center>

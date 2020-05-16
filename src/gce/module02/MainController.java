@@ -5,8 +5,6 @@ import gce.module02.model.Item;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 
@@ -103,23 +101,6 @@ public class MainController {
 
         // Select the first to-do item in the list
         todoListView.getSelectionModel().selectFirst();
-    }
-
-    /**
-     * Allow the user to delete an item by pressing the Delete or Backspace
-     * keys if they do not want to use the context menu.
-     *
-     * @param keyEvent The key pressed on the selected item
-     */
-    public void handleKeyDelete(KeyEvent keyEvent) {
-        Item selectedItem = todoListView.getSelectionModel().getSelectedItem();
-
-        // We only want to allow the deletion of existing items
-        if (selectedItem != null) {
-            if (keyEvent.getCode().equals(KeyCode.DELETE) || keyEvent.getCode().equals(KeyCode.BACK_SPACE)) {
-                deleteItem(selectedItem);
-            }
-        }
     }
 
     /**
